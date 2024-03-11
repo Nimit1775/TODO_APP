@@ -2,7 +2,7 @@ const zod = require ('zod');
 
 const  createTODO = zod.object({
 
-    title : zod.string(),
+    title: zod.string().optional() ,
     description  : zod.string(),
 
 })

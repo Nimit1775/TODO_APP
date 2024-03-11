@@ -6,16 +6,16 @@ const app = express();
 
 app.use(express.json());
 
-app.post("/todo" ,  async function (req, res) {
+app.post("/todo", async function(req, res) {
     const createPayload = req.body;
-    const parsedPayload = createTODO.parse(createPayload);
-    if  (!parsedPayload.sucess) {
-        res.status(411).json ({
-            msg : " you sent the wrong inputs ",
+    const parsedPayload = createTODO.safeParse(createPayload);
 
+    if (!parsedPayload.success) {
+        res.status(411).json({
+            msg: "You sent the wrong inputs",
         })
         return;
-    }    
+    }
 
 await Todo.create  ({
     title  : createPayload.title,
@@ -41,16 +41,15 @@ app.get("/todo" ,  async function (req, res) {
 
 })
 
-app.put("/completed" ,  async function (req, res) {
+app.put("/completed", async function(req, res) {
     const updatePayload = req.body;
-    const parsedPayload = updateTODO.parse(updatePayload);
-    if  (!parsedPayload.sucess) {
-        res.status(411).json ({
-            msg : " you sent the wrong inputs ",
-
+    const parsedPayload = updateTODO.safeParse(updatePayload);
+    if (!parsedPayload.success) {
+        res.status(411).json({
+            msg: "You sent the wrong inputs",
         })
         return;
-    } 
+    }
 
     await Todo.update({
         _id   : req.body.id,
