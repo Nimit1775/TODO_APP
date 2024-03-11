@@ -66,6 +66,5 @@ app.put("/completed" ,  async function (req, res) {
 })
 
 
+app.listen(3000);
 
-
-const port = 3000;
