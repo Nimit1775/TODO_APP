@@ -14,7 +14,15 @@ function App() {
   const json = await res.json();
   setTodos(json.todos);
  })*/
- 
+ useEffect(() => {
+  const fetchData = async () => {
+    const response = await fetch("http://localhost:3000/todo");
+    const json = await response.json();
+    setTodos(json.todo);
+  };
+
+  fetchData();
+}, []);
 
  return (
   <div>
